@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  registry:
+    image: registry:2.8.3
+    container_name: registry
+    restart: always
+    ports:
+      - 443:443
+    volumes:
+      - ./registery-data:/var/lib/registry
+      - ./certs:/certs  
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:443
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/repo.local.crt 
+      REGISTRY_HTTP_TLS_KEY: /certs/repo.local.key 
+
+
